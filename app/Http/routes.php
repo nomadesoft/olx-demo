@@ -12,5 +12,19 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->version();
+    $oMainCtrl = new App\Http\Controllers\MainController();
+    return $oMainCtrl->index();
 });
+
+$app->post('/search', function() use ($app) {
+
+    $oSearchCtrl = new App\Http\Controllers\SearchController();
+    return $oSearchCtrl->search($app->request);
+});
+
+$app->get('/search', function() use ($app) {
+
+	return redirect('/');
+});
+
+
